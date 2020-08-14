@@ -184,3 +184,4 @@ const agregarVenta = (dia, mes, año, vendedora, sucursal, componentes) => {
     console.log(ventas);
 };
 */
+

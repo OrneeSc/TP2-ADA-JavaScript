@@ -1,0 +1,19 @@
+{
+  "name": "tp2",
+  "version": "1.0.0",
+  "description": "jest",
+  "main": "TP-2-Javascript.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OrneeSc/TP2-ADA-JavaScript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OrneeSc/TP2-ADA-JavaScript/issues"
+  },
+  "homepage": "https://github.com/OrneeSc/TP2-ADA-JavaScript#readme"
+}

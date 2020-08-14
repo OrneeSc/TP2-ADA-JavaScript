@@ -1,0 +1,4 @@
+
+test('le paso "" y devuelve 1', () => {
+    expect(getMes("Enero")).toBe(1);
+});
