@@ -33,26 +33,44 @@ const precios = [
 //SUCURSALES
 const sucursales = [ 'Centro' , 'Caballito' ];
 
-//3 TEST
-
-beforeEach( () => {
-        const ventasVendedora = nombre => {
-        const buscarVentasDeVendedora = ventas.filter(vendedora => vendedora[4] === nombre)
-        console.log(buscarVentasDeVendedora); 
-        }
-});
+//3 TEST investigar lo del before
 
 test("Probar si filtra vendedora", () => {
+    const ventasVendedora = nombre => {
+        const buscarVentasDeVendedora = ventas.filter(vendedora => vendedora[4] === nombre)
+        }
        expect(ventasVendedora("Ada")).toBe(
             [100000001, 1, 1, 2019, "Ada", "Centro",["Monitor GPRS 3000", "Motherboard ASUS 1500"]] /*sin coma */
             [100000003, 10, 1, 2019, "Ada", "Centro",["Monitor ASC 543", "Motherboard ASUS 1200"]])
         });
 
 test("Probar si filtra vendedora que no existe", () => {
-          /*  const ventasVendedora = nombre => {
-                const buscarVentasDeVendedora = ventas.filter(vendedora => vendedora[4] === nombre)
-                       /* console.log(buscarVentasDeVendedora); */
+    const ventasVendedora = nombre => {
+        const buscarVentasDeVendedora = ventas.filter(vendedora => vendedora[4] === nombre)    
         expect(ventasVendedora("Orne")).toBe()
-    });
+    }
+});
 
-//test("Probar si trae los componentes de la vendedora")
+//9
+
+test("Probar si agrega nueva venta junto a la funcion de obtener ID", () => {
+
+    const obtenerIdVenta = () => {
+        let max = 999999999;
+        let min = 100000000;
+        const resultado = Math.random() * (max - min) + min;
+        return Math.round(resultado);
+      };
+
+    const agregarVenta = (dia, mes, anio, vendedora, sucursal, componentes) => {
+
+        let nuevaVenta = [];
+    
+        nuevaVenta.push(obtenerIdVenta(), dia, mes, anio, vendedora, sucursal, componentes);
+        ventas.push(nuevaVenta)
+    }
+    expect(agregarVenta(obtenerIdVenta(), 14,8,2020, "Ada", "Caballito", [[ 'Monitor ASC 543' ,
+    'Motherboard ASUS 1200' , 'RAM Quinston' ]] ))
+});
+
+

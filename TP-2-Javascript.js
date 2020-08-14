@@ -169,19 +169,4 @@ const agregarVenta = (dia, mes, anio, vendedora, sucursal, componentes) => {
     
 };
 
-/*const stringConvertarray = (string) => {
-    let array = string.split(",");
-    return array;
-};
-
-const agregarVenta = (dia, mes, año, vendedora, sucursal, componentes) => {
-    let lastID = obtenerIdVenta(); //Por ahora...Con ej 8. se utilizara lastId obtenerIdVenta()/
-    let arrComp = stringConvertarray(componentes);
-    let nuevaVenta = [lastID, Number(dia), Number(mes), Number(año), vendedora, sucursal, arrComp];
-    console.log("Agregando venta");
-    ventas.push(nuevaVenta);
-    console.log("Venta agregada. La lista de ventas actualizada es:");
-    console.log(ventas);
-};
-*/
 
