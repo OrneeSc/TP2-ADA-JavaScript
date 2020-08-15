@@ -33,6 +33,7 @@ const precios = [
 //SUCURSALES
 const sucursales = [ 'Centro' , 'Caballito' ];
 
+//ALGORITMO
 const ventasVendedora = nombre => {
     const buscarVentasDeVendedora = ventas.filter(vendedora => vendedora[4] === nombre)
     }
@@ -51,9 +52,8 @@ const agregarVenta = (dia, mes, anio, vendedora, sucursal, componentes) => {
     ventas.push(nuevaVenta)
 }
 
-//3 TEST investigar lo del before
-
-
+//TESTEO
+//3 
 describe("Test usando beforeEach()", () => {
     beforeEach(()=> {
         //ventasVendedora();
