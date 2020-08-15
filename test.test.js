@@ -56,7 +56,7 @@ const agregarVenta = (dia, mes, anio, vendedora, sucursal, componentes) => {
 
 describe("Test usando beforeEach()", () => {
     beforeEach(()=> {
-        ventasVendedora();
+        //ventasVendedora();
     });
 
     test("Probar si filtra vendedora", () => {
