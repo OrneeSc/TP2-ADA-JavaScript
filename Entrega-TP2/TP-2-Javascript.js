@@ -1,7 +1,7 @@
-//VENDEDORAS
+//AARAY VENDEDORAS
 const vendedoras = [ "Ada" , "Grace" , "Hedy" , "Sheryl" ];
 
-//VENTAS
+//ARRAY VENTAS
 const ventas = [
 [ 100000000 , 4 , 2 , 2019 , 'Grace' , 'Centro' , [ 'Monitor GPRS 4000' ,
 'Motherboard ASUS 1500' ] ],
@@ -17,7 +17,7 @@ const ventas = [
 'Motherboard ASUS 1200' , 'RAM Quinston' ] ]
 ]
 
-//PRECIOS
+// ARRAY PRECIOS
 const precios = [
 [ 'Monitor GPRS 3000' , 200 ],   
 [ 'Motherboard ASUS 1500' , 120 ], 
@@ -31,7 +31,7 @@ const precios = [
 [ 'Monitor GPRS 4000' , 100 ]
 ];
 
-//SUCURSALES
+//ARRAY SUCURSALES
 const sucursales = [ 'Centro' , 'Caballito' ];
 
 //------------------------------------------------------------------------//

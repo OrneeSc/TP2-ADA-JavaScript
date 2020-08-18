@@ -51,7 +51,7 @@ const precioMaquina = componentes => {
         sumaComponentes += resultado[1];
     }
     return sumaComponentes
-}
+};
 
 
 ///////////////////////// test/////////
