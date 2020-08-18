@@ -3,14 +3,14 @@ const vendedoras = [ "Ada" , "Grace" , "Hedy" , "Sheryl" ];
 
 //VENTAS
 const ventas = [
-[ 100000000 , 4 , 2 , 2019 , 'Grace' , 'Centro' , [ 'Monitor GPRS 3000' ,
+[ 100000000 , 4 , 2 , 2019 , 'Grace' , 'Centro' , [ 'Monitor GPRS 4000' ,
 'Motherboard ASUS 1500' ] ],
 [ 100000001 , 1 , 1 , 2019 , 'Ada' , 'Centro' , [ 'Monitor GPRS 3000' ,
 'Motherboard ASUS 1500' ] ],
 [ 100000002 , 2 , 1 , 2019 , 'Grace' , 'Caballito' , [ 'Monitor ASC 543' ,
 'Motherboard MZI' , 'HDD Toyiva' ] ],
 [ 100000003 , 10 , 1 , 2019 , 'Ada' , 'Centro' , [ 'Monitor ASC 543' ,
-'Motherboard ASUS 1200' ] ],
+'Monitor ASC 543' ] ],
 [ 100000004 , 12 , 1 , 2019 , 'Grace' , 'Caballito' , [ 'Monitor GPRS 3000' ,
 'Motherboard ASUS 1200' ] ],
 [ 100000005 , 21 , 3 , 2019 , 'Hedy' , 'Caballito' , [ 'Monitor ASC 543' ,
@@ -28,6 +28,7 @@ const precios = [
 [ 'HDD Wezter Dishital' , 75 ],
 [ 'RAM Quinston' , 110 ],
 [ 'RAM Quinston Fury' , 230 ]
+[ 'Monitor GPRS 4000' , 100 ]
 ];
 
 //SUCURSALES
@@ -42,7 +43,7 @@ const precioMaquina = componentes => {
     for(let i = 0; i < componentes.length; i++){ /*Nota: Retorna todo el arreglo*/
         resultado = precios.find(componente => componente[0] == componentes[i])
         sumaComponentes += resultado[1]
-        console.log(`El precio del componente ${componentes[i]} es ${resultado[1]}`);
+        //console.log(`El precio del componente ${componentes[i]} es ${resultado[1]}`);
     }
         return sumaComponentes;
     };
@@ -67,16 +68,16 @@ const cantidadVentasComponente = componente => {
 const ventasVendedora = nombre => {
     //buscar vendedoras
     const buscarVentasDeVendedora = ventas.filter(vendedora => vendedora[4] === nombre)
-            console.log(buscarVentasDeVendedora); 
+            //console.log(buscarVentasDeVendedora); 
 
     let resultadoVentasVendedora = [] ;
 
     for(let i = 0; i < buscarVentasDeVendedora.length; i++){
-        let obtenerComponentes = buscarVentasDeVendedora[i].slice(6);
-        console.log(obtenerComponentes);
-        resultadoVentasVendedora.push(obtenerComponentes.flat());
-           }
-        console.log(resultadoVentasVendedora);
+            let obtenerComponentes = buscarVentasDeVendedora[i].slice(6);
+            //console.log(obtenerComponentes);
+            resultadoVentasVendedora.push(obtenerComponentes.flat());
+        }
+        //console.log(resultadoVentasVendedora);
         return precioMaquina(resultadoVentasVendedora.flat());
 };
 
@@ -87,6 +88,7 @@ const componenteMasVendido = () => {
     let mayor = 0;
     let componenteDeMasVentas ="";
     precios.forEach(componente => {
+        console.log(`Que es lo que hay en componente[0]:`,componente[0]);
       let numero = cantidadVentasComponente(componente[0]);
       if(mayor < numero) {
         mayor = numero;
@@ -116,8 +118,8 @@ const ventasSucursal = sucursal => {
 //6
 const mejorVendedora = () => {
     
-    let mayor = 0;
     let mayorVendedora;
+    let mayor = 0;
     for(let i = 0; i < vendedoras.length; i++){
         if(mayor < ventasVendedora(vendedoras[i])){
             mayor = ventasVendedora(vendedoras[i]);

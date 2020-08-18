@@ -35,32 +35,33 @@ const precios = [
 const sucursales = [ 'Centro' , 'Caballito' ];
 
 //ALGORITMO
-const ventasVendedora = nombre => {
-    const buscarVentasDeVendedora = ventas.filter(vendedora => vendedora[4] === nombre)
-    }
+    const ventasVendedora = nombre => {
+        const buscarVentasDeVendedora = ventas.filter(vendedora => vendedora[4] === nombre)
+        }
 
-    const obtenerIdVenta = () => {
-        let max = 999999999;
-        let min = 100000000;
-        const resultado = Math.random() * (max - min) + min;
-        return Math.round(resultado);
-    }
-    
-    
-    const agregarVenta = (dia, mes, anio, vendedora, sucursal, componentes) => {
-        let nuevaVenta = [];
-        nuevaVenta.push(obtenerIdVenta(), dia, mes, anio, vendedora, sucursal, componentes);
-        ventas.push(nuevaVenta)
-    }
+        const obtenerIdVenta = () => {
+            let max = 999999999;
+            let min = 100000000;
+            const resultado = Math.random() * (max - min) + min;
+            return Math.round(resultado);
+        }
+        
+        
+        const agregarVenta = (dia, mes, anio, vendedora, sucursal, componentes) => {
+            let nuevaVenta = [];
+            nuevaVenta.push(obtenerIdVenta(), dia, mes, anio, vendedora, sucursal, componentes);
+            ventas.push(nuevaVenta)
+        }
+
+
+
+
+
 
 //TESTEO
 //3 
 
-describe("Test usando beforeEach()", () => {
-    beforeEach(()=> {
-        ventas = []
-    });
-    
+
     /*test("Probar si filtra vendedora", () => {
 
         expect(ventasVendedora("Ada")).toBe(
@@ -89,10 +90,5 @@ describe("Test usando beforeEach()", () => {
 
 
     //9 - M i r i
-    test("Probar si agrega nueva venta a la lista de ventas", () => {
-        //este expect no esta testeando nada .toBe? .toThrow?
-        agregarVenta(14,8,2020, "Ada", "Caballito", [ 'Monitor ASC 543' ,'Motherboard ASUS 1200' , 'RAM Quinston' ] );
-        expect(ventas.length).toBe(1); 
-    });
-});
+
     
