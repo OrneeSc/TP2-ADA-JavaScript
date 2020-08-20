@@ -98,8 +98,8 @@ const cantidadVentasComponente = componente => {
             let venta = ventas[i].flat();
             if(venta.includes(componente)) {
                 totalVentas+= 1;
-            }     
-        }
+            };    
+        };
         return totalVentas
 };
 
