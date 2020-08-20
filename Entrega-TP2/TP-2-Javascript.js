@@ -36,7 +36,7 @@ const sucursales = [ 'Centro' , 'Caballito' ];
 
 //------------------------------------------------------------------------//
 ///FUNCIONES
-//1 - terminado
+//1 
 const precioMaquina = componentes => { 
     let resultado = 0;
     let sumaComponentes = 0;
