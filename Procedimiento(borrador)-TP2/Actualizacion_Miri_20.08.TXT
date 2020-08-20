@@ -1,0 +1,40 @@
+/ / C o r r e c c i ó n      d e      e r r o r e s 
+/ / / / / / / / / / / / / / / / / / / / / / / / / / / / /  / / / / / / / / / / / 
+/ / 1 - función : precioMaquina
+	  ● Error: 	PrecioMaquina: testeo de errores › Arroja mensaje de 'Error' si el parámetro se pasa como string
+    		expect(received).toThrow(expected)
+   		Expected substring: "El componente no existe."
+    		Received message:   "Cannot read property '0' of undefined"
+	
+	> Solución: Al array "precios" le faltaba una coma en la ultima fila
+/ / / / / / / / / / / / / / / / / / / / / / / / / / / / /  / / / / / / / / / / / 
+/ / 2 - función : cantidadVentasComponente
+	● Error: 	cantidadVentasComponente: devuelve la cantidad de veces que se vendió un componente › Devuelve la cantidad de ventas del componente
+    	 	expect(received).toBe(expected) // Object.is equality
+		Expected: 3
+		Received: 2
+
+	> Solución: El array "ventas" tenia 'Monitor GPRS 4000' en la primera venta y debia ser 'Monitor GPRS 3000'
+	
+/ / / / / / / / / / / / / / / / / / / / / / / / / / / / /  / / / / / / / / / / / 
+*/Nota/* Todos los errores a continuación vienen de que ahora 
+	esta considerando el 'Monitor GPRS 3000' que antes no estaba
+/ / / / / / / / / / / / / / / / / / / / / / / / / / / / /  / / / / / / / / / / / 
+/ / 3 - función : ventasVendedora
+	● Error: 	ventasVendedora: devuelve el importe total de ventas de una vendedora › Devuelve el importe de la cantidad de ventas que tuvo esa vendedora
+		expect(received).toBe(expected) // Object.is equality
+		Expected: 670
+		Received: 820
+
+	> Solución: "Ada" vendio 820 en total
+/ / / / / / / / / / / / / / / / / / / / / / / / / / / / /  / / / / / / / / / / / 
+/ / 5 - función : ventasSucursal
+	● Error:	ventasSucursal: devuelve el total de ventas de la sucursal › Devuelve un número, el restulado de ventas de esa sucursal
+		expect(received).toBe(expected) // Object.is equality
+		Expected: 990
+		Received: 1140
+
+	> Solución: La cantidad de ventas de 'Centro' es 1140 
+/ / / / / / / / / / / / / / / / / / / / / / / / / / / / /  / / / / / / / / / / / 
+/ / 
+

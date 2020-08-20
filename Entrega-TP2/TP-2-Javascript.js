@@ -3,7 +3,7 @@ const vendedoras = [ "Ada" , "Grace" , "Hedy" , "Sheryl" ];
 
 //ARRAY VENTAS
 const ventas = [
-[ 100000000 , 4 , 2 , 2019 , 'Grace' , 'Centro' , [ 'Monitor GPRS 4000' ,
+[ 100000000 , 4 , 2 , 2019 , 'Grace' , 'Centro' , [ 'Monitor GPRS 3000' ,
 'Motherboard ASUS 1500' ] ],
 [ 100000001 , 1 , 1 , 2019 , 'Ada' , 'Centro' , [ 'Monitor GPRS 3000' ,
 'Motherboard ASUS 1500' ] ],
@@ -27,7 +27,7 @@ const precios = [
 [ 'HDD Toyiva' , 90 ],
 [ 'HDD Wezter Dishital' , 75 ],
 [ 'RAM Quinston' , 110 ],
-[ 'RAM Quinston Fury' , 230 ]
+[ 'RAM Quinston Fury' , 230 ],
 [ 'Monitor GPRS 4000' , 100 ]
 ];
 
@@ -36,18 +36,19 @@ const sucursales = [ 'Centro' , 'Caballito' ];
 
 //------------------------------------------------------------------------//
 ///FUNCIONES
-//1 - terminado
+//1 
 const precioMaquina = componentes => { 
     let resultado = 0;
     let sumaComponentes = 0;
-    for(let i = 0; i < componentes.length; i++){ /*Nota: Retorna todo el arreglo*/
-        resultado = precios.find(componente => componente[0] == componentes[i])
-        sumaComponentes += resultado[1]
-        //console.log(`El precio del componente ${componentes[i]} es ${resultado[1]}`);
+  
+    for(let i = 0; i < componentes.length; i++){
+        if(componentes[i] === Number) throw new Error ("El componente no existe.");
+        resultado = precios.find(componente => componente[0] === componentes[i]);
+        if(!resultado) throw new Error ("El componente no existe.");      
+        sumaComponentes += resultado[1];
     }
-        return sumaComponentes;
-    };
-
+    return sumaComponentes
+  };
 //-----------------------------------------------------------------------//
 //2
 
@@ -88,7 +89,6 @@ const componenteMasVendido = () => {
     let mayor = 0;
     let componenteDeMasVentas ="";
     precios.forEach(componente => {
-        console.log(`Que es lo que hay en componente[0]:`,componente[0]);
       let numero = cantidadVentasComponente(componente[0]);
       if(mayor < numero) {
         mayor = numero;
@@ -116,33 +116,40 @@ const ventasSucursal = sucursal => {
     };
 //--------------------------------------------------------------------------//
 //6
+//6 - función - ERROR MUY RARO EN EL TEST (!!)
 const mejorVendedora = () => {
     
-    let mayorVendedora;
+    let mayorVendedora = "hola?";
     let mayor = 0;
-    for(let i = 0; i < vendedoras.length; i++){
-        if(mayor < ventasVendedora(vendedoras[i])){
-            mayor = ventasVendedora(vendedoras[i]);
-            mayorVendedora = vendedoras[i];
-              };
-            };
-              return mayorVendedora;
-          }; 
+    vendedoras.forEach(comp => {
+        if(ventasVendedora(comp)>mayor) {
+            mayor=ventasVendedora(comp);
+            mayorVendedora=comp;
+        }
+    });
 
+    //for(let i = 0; i < vendedoras.length; i++){
+    //    if(mayor < ventasVendedora(vendedoras[i])){
+    //        mayor = ventasVendedora(vendedoras[i]);
+    //        mayorVendedora = vendedoras[i];
+    //    }
+    //};
+    return mayorVendedora;
+  };
 //--------------------------------------------------------------------------//
-//7
+//7 - ERROR MUY RARO EN EL TEST (!!)
 const ventaPromedio = () => {
 
-    let ventasTotales = [] ;
+    let porComponentes = [] ;
 
     for(let i = 0; i < ventas.length; i++){
         let obtenerComponentes = ventas[i].slice(6);
-        console.log(obtenerComponentes);
-        ventasTotales.push(obtenerComponentes.flat());
-           }
-        console.log(ventasTotales);
-        const resultado = precioMaquina(ventasTotales.flat())/ventas.length;
-        return Math.floor(resultado);
+        porComponentes.push(obtenerComponentes.flat());
+    }
+
+    const resultado = precioMaquina(porComponentes.flat())/ventas.length;
+    console.log(`El resultado del promedio de ventas es:`,resultado);
+    return Math.round(resultado);
 
 };
 //------------------------------------------------------------------------//
