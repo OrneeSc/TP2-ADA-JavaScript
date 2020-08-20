@@ -3,7 +3,7 @@ const vendedoras = [ "Ada" , "Grace" , "Hedy" , "Sheryl" ];
 
 //ARRAY VENTAS
 const ventas = [
-[ 100000000 , 4 , 2 , 2019 , 'Grace' , 'Centro' , [ 'Monitor GPRS 4000' ,
+[ 100000000 , 4 , 2 , 2019 , 'Grace' , 'Centro' , [ 'Monitor GPRS 3000' ,
 'Motherboard ASUS 1500' ] ],
 [ 100000001 , 1 , 1 , 2019 , 'Ada' , 'Centro' , [ 'Monitor GPRS 3000' ,
 'Motherboard ASUS 1500' ] ],
@@ -27,7 +27,7 @@ const precios = [
 [ 'HDD Toyiva' , 90 ],
 [ 'HDD Wezter Dishital' , 75 ],
 [ 'RAM Quinston' , 110 ],
-[ 'RAM Quinston Fury' , 230 ]
+[ 'RAM Quinston Fury' , 230 ],
 [ 'Monitor GPRS 4000' , 100 ]
 ];
 
@@ -141,7 +141,7 @@ const ventasVendedora = nombre => {
 describe('ventasVendedora: devuelve el importe total de ventas de una vendedora', () => { 
     test("Devuelve el importe de la cantidad de ventas que tuvo esa vendedora", () => {
       expect(ventasVendedora('Grace')).toBe(990);
-      expect(ventasVendedora('Ada')).toBe(670);
+      expect(ventasVendedora('Ada')).toBe(820);
       expect(ventasVendedora('Hedy')).toBe(460);
     });
     test("Devuelve 0 si la vendedora no vendió nada", () => {
@@ -172,7 +172,7 @@ const componenteMasVendido = () => {
       mayor = numero;
       componenteDeMasVentas = componente[0];
     }
-});
+  });
   return componenteDeMasVentas;
 };
 //4 - test
@@ -201,7 +201,7 @@ const ventasSucursal = sucursal => {
 //5 - test
 describe('ventasSucursal: devuelve el total de ventas de la sucursal', () => { 
     test("Devuelve un número, el restulado de ventas de esa sucursal", () => {
-    expect(ventasSucursal('Centro')).toBe(990);
+    expect(ventasSucursal('Centro')).toBe(1140);
     expect(ventasSucursal('Caballito')).toBe(1130);
     });
     test("Devuelve cero(0) si la sucursal no existe", () => {
@@ -214,46 +214,60 @@ describe('ventasSucursal: devuelve el total de ventas de la sucursal', () => {
   
     
 //--------------------------------------------------------------------------//
-//6 - función
+//6 - función - ERROR MUY RARO EN EL TEST (!!)
 const mejorVendedora = () => {
     
-  let mayorVendedora;
+  let mayorVendedora = "hola?";
   let mayor = 0;
-  for(let i = 0; i < vendedoras.length; i++){
-      if(mayor < ventasVendedora(vendedoras[i])){
-          mayor = ventasVendedora(vendedoras[i]);
-          mayorVendedora = vendedoras[i];
-            };
-          };
-            return mayorVendedora;
+  vendedoras.forEach(comp => {
+      if(ventasVendedora(comp)>mayor) {
+          mayor=ventasVendedora(comp);
+          mayorVendedora=comp;
+      }
+  });
+  //for(let i = 0; i < vendedoras.length; i++){
+  //    if(mayor < ventasVendedora(vendedoras[i])){
+  //        mayor = ventasVendedora(vendedoras[i]);
+  //        mayorVendedora = vendedoras[i];
+  //    }
+  //};
+  return mayorVendedora;
 };
 //6 - test
 describe('mejorVendedora: devuelve el nombre de la vendedora que más ingresos generó',() =>{ 
     test("Devuelve el nombre de la vendedora que más ventas generó", () => {
-    expect(mejorVendedora()).toContain('Grace');
+    expect(mejorVendedora()).toBe("Grace");
     });
 }); 
 
+/*Nota:*/ /*El error de este TEST es *muy raro*. En el programa funciona bien, 'return mayorVendedora' devuelve
+correctamente "Grace"-Pero en el test devuelve directamente 'hola?' como si no pudiera entrar al 'forEach(..)' (¿?) */
 
 //--------------------------------------------------------------------------//
-//7 - función
+//7 - función - ERROR MUY RARO EN EL TEST (!!)
 const ventaPromedio = () => {
-  let porComponentes =[];
 
+  let porComponentes =[];
+  
   for (let i = 0;  i < ventas.length; i++) {
     let obtenerComponentes = ventas[i].slice(6);
     porComponentes.push(obtenerComponentes.flat()); 
-   } 
+  } 
    
-   const ventasTotales = precioMaquina(porComponentes.flat()) / ventas.length;
-   return Math.round(ventasTotales)
+  const resultado = precioMaquina(porComponentes.flat()) / ventas.length;
+  return Math.round(resultado);
+
 };
+/*Nota:*/ /*Sucede lo mismo que con "mejorVendedora()", en este caso 'resultado' arroja el valor "0" en el test 
+y en consola arroja el valor "378"
+pero a diferencia del anterior, si declarams al incio "let resultado = 5;" no arroja "5" y sigue arrojando "0" (¿?)*/
+
 
 //7 - test
 describe('ventaPromedio: devuelve el importe promedio por venta',() =>{ 
 
     test("Devuelve un numero con promedio de venta", () => {
-    expect(ventaPromedio()).toBe(353);
+    expect(ventaPromedio()).toBe(378);
     });
   });
 //------------------------------------------------------------------------//
